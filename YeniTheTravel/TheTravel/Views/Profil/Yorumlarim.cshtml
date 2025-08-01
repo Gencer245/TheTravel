@@ -1,0 +1,43 @@
+﻿@model List<Yorumlar>
+@using TheTravel.Models.Sınıflar
+@{
+    ViewBag.Title = "Yorumlarım";
+    Layout = "~/Views/Shared/_ProfilLayout.cshtml";
+}
+
+<h2>Yorumlarım</h2>
+<br />
+<table class="table table-bordered table-striped">
+    <thead>
+        <tr>
+            <th>BLOG ID</th>
+            <th>SİL</th>
+            <th>GÜNCELLE</th>
+            <th>DETAY</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var y in Model)
+        {
+            <tr>
+                <td>@y.Blogid</td>
+                <td>
+                    <a href="/Profil/YorumSil/@y.ID" class="btn btn-danger"
+                       onclick="return confirm('Bu yorumu silmek istediğinizden emin misiniz?')">
+                        Sil
+                    </a>
+                </td>
+                <td>
+                    <a href="/Profil/YorumGetir/@y.ID" class="btn btn-warning">
+                        Güncelle
+                    </a>
+                </td>
+                <td>
+                    <a href="/Profil/YorumDetayları/@y.ID" class="btn btn-secondary">
+                        Detaylar
+                    </a>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>

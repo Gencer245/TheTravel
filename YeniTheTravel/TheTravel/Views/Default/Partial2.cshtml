@@ -1,0 +1,44 @@
+﻿@using TheTravel.Models.Sınıflar
+@model List<Blog>
+
+<div class="padding">
+    <h4>Haftanın En İyi 10 Blogu</h4>
+    <ul class="list list-pad">
+        @{ int i = 0; }
+
+        @foreach (var x in Model)
+        {
+            if (i == 10)
+            {
+                break;
+            }
+            <li class="list-bg"><span>@{i++;} @i</span><a href="/Blog/BlogDetay/@x.ID" class="blog-link">@x.Baslik</a></li>
+        }
+    </ul>
+    <a href="/Blog/Index/" class="link1">Tüm Blogları Gör</a>
+</div>
+
+<style>
+    /* Blog başlıkları için stil */
+    .blog-link {
+        color: black !important; /* Başlangıçta başlık rengi siyah */
+        text-decoration: none; /* Alt çizgi yok */
+    }
+
+        /* Hover durumunda sadece link rengini sarıya çevir */
+        .blog-link:hover {
+            color: #ffd800 !important; /* Hover'da başlık sarı renkte olacak */
+        }
+    /* Tüm bloglar linki */
+    .link1 {
+        color: black !important; /* Başlangıçta siyah renk */
+        text-decoration: none; /* Alt çizgi yok */
+    }
+
+        /* Tüm bloglar linkine hover rengi ekle */
+        .link1:hover {
+            color: #ffd800 !important; /* Hover durumunda sarı renk */
+        }
+
+</style>
+

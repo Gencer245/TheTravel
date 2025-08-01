@@ -1,0 +1,67 @@
+﻿@{
+    ViewBag.Title = "KıtaDetay";
+    Layout = "~/Views/Shared/_TestLayout.cshtml";
+}
+
+@model TheTravel.Models.Sınıflar.Kıta
+
+<div class="rehber-container">
+    <div class="rehber-content">
+        <h2>@Model.Ad - Ülkeler</h2>
+
+        <ul>
+            @foreach (var ülke in Model.Ülkeler)
+            {
+                <li>
+                    <a href="@Url.Action("ÜlkeDetay", "Rehber", new { ülkeId = ülke.Id })" class="ülke-buton">
+                        @ülke.Ad
+                    </a>
+                </li>
+            }
+        </ul>
+    </div>
+</div>
+
+<style>
+    .rehber-container {
+        min-height: calc(100vh - 100px); /* Navbar + Footer yüksekliği kadar ayarla */
+        display: flex;
+        flex-direction: column;
+    }
+    h2 {
+        font-weight: bold;
+    }
+
+    .rehber-content {
+        flex: 1;
+    }
+
+    ul {
+        list-style-type: none;
+        padding: 0;
+    }
+
+    li {
+        margin: 10px 0;
+    }
+
+    .ülke-buton {
+        display: block;
+        padding: 10px 20px;
+        background-color: #808080;
+        color: white;
+        font-size: 18px;
+        font-weight: bold;
+        border-radius: 5px;
+        text-decoration: none;
+        transition: background 0.3s ease-in-out;
+        width: 175px; /* Maksimum genişlik belirledik */
+    }
+
+        .ülke-buton:hover {
+            background-color: #ffd800;
+        }
+</style>
+
+
+

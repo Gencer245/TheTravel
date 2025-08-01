@@ -1,0 +1,113 @@
+﻿@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+<html>
+<head>
+    <title>THETRAVEL LOGIN & REGISTER</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <link href="~/webLogin/css/style.css" rel="stylesheet" type="text/css" media="all" />
+    <style>
+        /* Inline style to make all buttons consistent with rounded corners */
+        .submit-btn {
+            border-radius: 5px !important; /* uniform rounded corners */
+            padding: 10px 20px;
+            border: none;
+            cursor: pointer;
+            background-color: #003366 !important;
+            color: white;
+            font-size: 16px;
+            transition: background-color 0.3s ease;
+            display: inline-block;
+        }
+
+            .submit-btn:hover {
+                background-color: #C2A385;
+            }
+
+        .button-group {
+            margin-top: 10px;
+            /* Ensure same styling and position */
+        }
+
+        /* Tüm metinleri siyah yapmak için stil */
+        body {
+            color: black !important; /* Tüm metinleri siyah yap */
+        }
+
+        input {
+            color: black ; /* Giriş alanlarındaki metinleri siyah yap */
+        }
+
+        .mail-form-agile {
+            margin-top: -10px !important; /* Giriş formunun yukarı çıkmasını sağlar */
+        }
+
+
+        h1 {
+            color: black; /* Başlıkları siyah yap */
+            background-color: #C2A385;
+            padding: 15px 30px;
+            border-radius: 8px;
+            text-align: center;
+            display: inline-block;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            font-size: 24px;
+            transition: all 0.3s ease;
+        }
+
+            h1:hover {
+                background-color: #C2A385;
+                color: white;
+                cursor: pointer;
+                transform: translateY(-5px); /* Hover efekti ile hafif yükselme */
+            }
+    </style>
+</head>
+<body>
+    <div class="padding-all">
+        <div class="header">
+            <h1>THETRAVEL LOGIN & REGISTER</h1>
+        </div>
+
+        <div class="design-w3l">
+            <!-- Kullanıcı Girişi Formu -->
+            <div class="mail-form-agile">
+                @using (Html.BeginForm("Login", "GirisVeKayit", FormMethod.Post))
+                {
+                    <input type="text" name="KullaniciAdi" placeholder="Kullanıcı Adı" required="" />
+                    <input type="password" name="Sifre" class="padding" placeholder="Şifre" required="" />
+                    <input type="submit" value="Giriş Yap" class="submit-btn" />
+                }
+                <div class="button-group">
+                    <input type="button" value="Kayıt Ol" class="submit-btn" onclick="window.location.href='@Url.Action("KayitOl", "GirisVeKayit")'" />
+                </div>
+            </div>
+            <br />
+            <br />
+            <br />
+
+            <!-- Admin Girişi Başlığı -->
+            <div class="header">
+                <h1>ADMIN</h1>
+            </div>
+
+            <!-- Admin Girişi Formu -->
+            <div class="mail-form-agile">
+                @using (Html.BeginForm("AdminLogin", "GirisVeKayit", FormMethod.Post))
+                {
+                    <input type="text" name="Kullanici" placeholder="Admin Kullanıcı Adı" required="" />
+                    <input type="password" name="Sifre" class="padding" placeholder="Admin Şifre" required="" />
+                    <input type="submit" value="Admin Girişi" class="submit-btn" />
+                }
+            </div>
+        </div>
+
+        <div class="footer">
+            <p>© 2025 TheTravel. Tüm Hakları Saklıdır.</p>
+        </div>
+    </div>
+</body>
+</html> 

@@ -1,0 +1,20 @@
+﻿@model TheTravel.Models.Sınıflar.Blog
+
+@{
+    ViewBag.Title = "Blogların Detayları";
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+}
+
+<h2>@Model.Baslik</h2>
+<br />
+
+<div>
+    <p><strong>Blog ID:</strong> @Model.ID</p>
+    <p><strong>Başlık:</strong> @Model.Baslik</p>
+    <p><strong>Yayınlanma Tarihi:</strong> @Model.Tarih.ToString("dd/MM/yyyy")</p>
+    <p><strong>Blog Görseli:</strong> @Model.BlogImage</p>
+    <p><strong>Açıklama:</strong> @Model.Aciklama</p>
+    <p><strong>Kullanıcı ID:</strong> @Model.KullaniciID</p>
+</div>
+
+<hr />

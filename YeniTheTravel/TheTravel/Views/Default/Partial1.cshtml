@@ -1,0 +1,57 @@
+﻿@using TheTravel.Models.Sınıflar
+@model List<Blog>
+
+<style>
+    /* Fotoğrafları yan yana yerleştirecek Flexbox düzeni */
+    .con-bot {
+        display: flex; /* Esnek düzen */
+        justify-content: space-between; /* Öğeler arasında eşit boşluk bırakır */
+        gap: 20px; /* Öğeler arasına boşluk ekler */
+        flex-wrap: nowrap; /* Öğelerin alt satıra geçmesini engeller */
+        overflow-x: auto; /* Eğer içerik sığmazsa yatay kaydırma çubuğu ekler */
+    }
+
+    .bot-left img {
+        width: 300px;
+        height: 150px;
+        object-fit: cover;
+        margin-bottom: 10px; /* Fotoğraf ile başlık arasına 10px boşluk bırakır */
+        padding: 0; /* Padding'i sıfırlar */
+        border: none; /* Çerçeve sıfırlanır */
+        outline: none; /* Outline'ı sıfırlar */
+    }
+
+    .right {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+    }
+
+    /* Başlık ile diğer metin arasındaki boşluğu azaltmak için */
+    .left-text h4 {
+        margin-top: 5px; /* Başlık ile fotoğraf arasındaki boşluğu azaltır */
+    }
+</style>
+
+<div class="con-bot">
+    @foreach (var x in Model)
+    {
+        <div class="right">
+            <div class="bot-left">
+                <img src="@x.BlogImage" alt="@x.Baslik" />
+            </div>
+            <div class="left-text">
+                <h3>@x.Baslik</h3>
+                <span>@x.Tarih.ToString("dd.MM.yyyy")</span>
+
+                <!-- Null kontrolü ve substring kullanımı -->
+                <p>@(x.Aciklama != null && x.Aciklama.Length > 90 ? x.Aciklama.Substring(0, 90) + "..." : x.Aciklama)</p>
+
+                <p><a href="/Blog/BlogDetay/@x.ID"><span class="read">Devamını Oku>></span></a></p>
+            </div>
+        </div>
+    }
+</div>
+
+
+

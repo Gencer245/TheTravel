@@ -1,0 +1,28 @@
+﻿@model TheTravel.Models.Sınıflar.Yorumlar
+
+@{
+    ViewBag.Title = "Yorum Güncelleme";
+    Layout = "~/Views/Shared/_ProfilLayout.cshtml";
+}
+
+<h2>Yorum Güncelleme Sayfası</h2>
+
+@using (Html.BeginForm("YorumGuncelle", "Profil", FormMethod.Post))
+{
+    @Html.AntiForgeryToken() <!-- Anti-forgery token'ı buraya ekliyoruz -->
+
+    @Html.HiddenFor(x => x.ID) <!-- Yorum ID'yi gizli tutuyoruz -->
+
+    <div class="form-group">
+        @Html.LabelFor(x => x.Yorum)
+        @Html.TextAreaFor(x => x.Yorum, new { @class = "form-control", rows = 5, placeholder = "Yorumunuzu güncelleyin..." })
+        @Html.ValidationMessageFor(x => x.Yorum, "", new { @class = "text-danger" })
+    </div>
+
+    <button type="submit" class="btn btn-success">Güncelle</button>
+    <a href="@Url.Action("Yorumlarim", "Profil")" class="btn btn-secondary">İptal</a>
+}
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+}

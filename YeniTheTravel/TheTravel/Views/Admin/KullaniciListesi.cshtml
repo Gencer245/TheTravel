@@ -1,0 +1,48 @@
+﻿
+@model List<TheTravel.Models.Sınıflar.Kullanici>
+
+@{
+    ViewBag.Title = "Kullanıcı Listesi";
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+}
+
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+    <meta charset="UTF-8" />
+    <title>@ViewBag.Title</title>
+    <link href="~/Content/bootstrap.min.css" rel="stylesheet" />
+</head>
+<body>
+    <div class="container mt-4">
+        <h2>Kullanıcılar</h2>
+        <table class="table table-striped">
+            <thead>
+                <tr>
+                    <th>ID</th>
+                    <th>Kullanıcı Adı</th>
+                    <th>Mail</th>
+                    <th>Detay</th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var kullanici in Model)
+                {
+                    <tr>
+                        <td>@kullanici.ID</td> <!-- Burayı güncelledik -->
+                        <td>@kullanici.KullaniciAdi</td>
+                        <td>@kullanici.Sifre</td>
+                        <td>@kullanici.Mail</td>
+                        <td>
+                            <a href="@Url.Action("KullaniciGetir", "Admin", new { id = kullanici.ID })" class="btn btn-info btn-sm">Detay</a> <!-- Burayı güncelledik -->
+                        </td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+        <a href="@Url.Action("AnaSayfa", "Admin")" class="btn btn-primary">Ana Sayfa</a>
+    </div>
+</body>
+</html>
+
+

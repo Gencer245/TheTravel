@@ -1,0 +1,25 @@
+﻿@model TheTravel.Models.Sınıflar.TuristikMekan
+@{
+    ViewBag.Title = "YeniMekan";
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+}
+
+<h2>Yeni Turistik Yer Ekle</h2>
+<br />
+<form class="form-group" method="post">
+    @Html.LabelFor(x => x.Ad)
+    @Html.TextBoxFor(x => x.Ad, new { @class = "form-control" })
+    <br />
+    @Html.LabelFor(x => x.Açıklama)
+    @Html.TextAreaFor(x => x.Açıklama,12,1, new { @class = "form-control" })
+    <br />
+    @Html.LabelFor(x => x.ResimUrl)
+    @Html.TextBoxFor(x => x.ResimUrl, new { @class = "form-control" })
+    <br />
+    @Html.LabelFor(x => x.ÜlkeId)
+    @Html.TextBoxFor(x => x.ÜlkeId, new { @class = "form-control" })
+    <br />
+    <button class="btn btn-primary">Kaydet</button>
+
+</form>
+

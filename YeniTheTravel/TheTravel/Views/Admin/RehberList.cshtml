@@ -1,0 +1,26 @@
+﻿@using TheTravel.Models.Sınıflar
+@model List<Kıta>
+@{
+    ViewBag.Title = "RehberList";
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+}
+
+<h2>Kıtalar</h2>
+<br />
+<table class="table table-bordered">
+    <tr>
+        <th>ID</th>
+        <th>AD</th>
+        <th>DETAY</th>
+    </tr>
+    @foreach (var x in Model)
+    {
+        <tr>
+            <th>@x.Id</th>
+            <th>@x.Ad</th>
+            <th><a href="/Admin/ÜlkelerList/@x.Id" class="btn btn-secondary">Detaylar</a></th>
+        </tr>
+    }
+</table>
+
+

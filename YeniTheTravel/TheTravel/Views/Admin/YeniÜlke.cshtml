@@ -1,0 +1,19 @@
+﻿@model TheTravel.Models.Sınıflar.Ülke
+@{
+    ViewBag.Title = "YeniÜlke";
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+}
+
+<h2>Yeni Ülke Ekle</h2>
+<br />
+<form class="form-group" method="post">
+    @Html.LabelFor(x => x.Ad)
+    @Html.TextBoxFor(x => x.Ad, new { @class = "form-control" })
+    <br />
+    @Html.LabelFor(x => x.KıtaId)
+    @Html.TextBoxFor(x => x.KıtaId, new { @class = "form-control" })
+    <br />
+    <button class="btn btn-primary">Kaydet</button>
+
+</form>
+

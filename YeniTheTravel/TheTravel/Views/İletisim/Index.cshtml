@@ -1,0 +1,96 @@
+﻿@using TheTravel.Models.Sınıflar;
+@model List<İletisim>
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_TestLayout.cshtml";
+}
+
+<h2 class="text-center my-4" style="color: black; font-weight: bold; font-size: 32px;">İletişim Bilgilerimiz</h2>
+
+@foreach (var x in Model)
+{
+    <div class="card p-4 mb-4">
+        <p class="info-text"><b>📍 Adres:</b> @x.Adresimiz</p>
+        <p class="info-text"><b>📧 Mail:</b> <a href="mailto:@x.Mail">@x.Mail</a></p>
+        <p class="info-text"><b>📞 Telefon:</b> <a href="#">@x.Numaramız</a></p>
+
+        <!-- Canlı Destek Butonu -->
+        <p class="mt-3">
+            <b>💬 Canlı Destek:</b>
+            <a href="#" class="btn btn-success">Canlı Destek</a>
+        </p>
+
+        <!-- OpenStreetMap (Harita) -->
+        <div id="map-@x.Id" class="map-container" data-lat="@x.Enlem" data-lng="@x.Boylam"></div>
+    </div>
+}
+
+
+<!-- OpenStreetMap ve Leaflet Kütüphanesi -->
+<link rel="stylesheet" href="https://unpkg.com/leaflet/dist/leaflet.css" />
+<script src="https://unpkg.com/leaflet/dist/leaflet.js"></script>
+
+<style>
+    /* 📌 Kartlar Arası Boşluk ve Şık Görünüm */
+    .card {
+        background: transparent !important; /* Arka planı tamamen kaldır */
+        box-shadow: none !important; /* Gölgeyi kaldır */
+        border: none !important; /* Kenarlıkları kaldır */
+    }
+
+    /* 📌 Bilgi Yazıları İçin Boşluklar */
+    .info-text {
+        margin-bottom: 14px;
+        font-size: 18px;
+        line-height: 1.6;
+    }
+
+    /* 📌 Harita Tasarımı */
+    .map-container {
+        width: 100%;
+        height: 400px;
+        max-width: 1000px;
+        min-height: 300px; /* Harita alanının yüksekliğini kontrol edin */
+        margin: 40px auto 0; /* Üst boşluk eklendi */
+        margin: 0 auto 40px; /* Alt boşluk eklendi */
+        border: none !important; /* Çerçeveyi kaldır */
+        box-shadow: none !important; /* Gölgeyi kaldır */
+        background: none !important; /* Arka planı kaldır */
+    }
+</style>
+
+<script>
+    document.addEventListener("DOMContentLoaded", function () {
+        document.querySelectorAll('.map-container').forEach(mapDiv => {
+            let lat = parseFloat(mapDiv.getAttribute("data-lat"));
+            let lng = parseFloat(mapDiv.getAttribute("data-lng"));
+
+            if (!isNaN(lat) && !isNaN(lng)) {
+                let map = L.map(mapDiv.id).setView([lat, lng], 12);
+
+                L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+                    attribution: '&copy; OpenStreetMap contributors'
+                }).addTo(map);
+
+                L.marker([lat, lng]).addTo(map)
+                    .bindPopup("📍 Konum")
+                    .openPopup();
+            } else {
+                console.error("Hata: Geçersiz enlem veya boylam değeri.", lat, lng);
+            }
+        });
+    });
+</script>
+
+
+
+
+
+
+
+
+
+
+
+
+

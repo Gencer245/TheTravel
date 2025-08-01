@@ -1,0 +1,36 @@
+﻿@model TheTravel.Models.Sınıflar.Blog
+@{
+    ViewBag.Title = "Blog Güncelleme";
+    Layout = "~/Views/Shared/_ProfilLayout.cshtml";
+}
+
+<h2>Blog Güncelleme Sayfası</h2>
+
+@using (Html.BeginForm("BlogGuncelle", "Profil", FormMethod.Post))
+{
+    @Html.AntiForgeryToken() <!-- Anti-forgery token'ı buraya ekliyoruz -->
+
+    @Html.HiddenFor(x => x.ID) <!-- Blog ID'yi gizli tutuyoruz -->
+
+    <div class="form-group">
+        @Html.LabelFor(x => x.Baslik)
+        @Html.TextBoxFor(x => x.Baslik, new { @class = "form-control" })
+    </div>
+
+    <div class="form-group">
+        @Html.LabelFor(x => x.Tarih)
+        @Html.TextBoxFor(x => x.Tarih, new { @class = "form-control", type = "date2" })
+    </div>
+
+    <div class="form-group">
+        @Html.LabelFor(x => x.BlogImage)
+        @Html.TextBoxFor(x => x.BlogImage, new { @class = "form-control" })
+    </div>
+
+    <div class="form-group">
+        @Html.LabelFor(x => x.Aciklama)
+        @Html.TextAreaFor(x => x.Aciklama, 5, 20, new { @class = "form-control" })
+    </div>
+
+    <button type="submit" class="btn btn-success">Kaydet</button>
+}

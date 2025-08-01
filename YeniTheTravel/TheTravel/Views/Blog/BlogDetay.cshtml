@@ -1,0 +1,89 @@
+﻿@model TheTravel.Models.Sınıflar.BlogYorum
+
+@{
+    ViewBag.Title = "BlogDetay";
+    Layout = "~/Views/Shared/_TestLayout.cshtml";
+}
+
+<!DOCTYPE HTML>
+<html>
+<head>
+    <title>Blog Detay</title>
+    <link href="~/web2/css/bootstrap.css" rel='stylesheet' type='text/css' />
+    <link href="~/web2/css/style.css" rel='stylesheet' type='text/css' />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+</head>
+<body>
+    <div class="single">
+        <div class="container">
+            <div class="col-md-8 single-main">
+                <div class="single-grid">
+                    @foreach (var x in Model.Deger1)
+                    {
+                        <img src="@x.BlogImage" alt="" style="margin-bottom: 20px" />
+                        <h2>@x.Baslik</h2>
+                        <div style="margin-bottom: 10px;">
+                            <img src="~/web2/images/avatar.png" alt="User Icon" style="width: 20px; height: 20px; vertical-align: middle; margin-right: 5px;" />
+                            <span>@x.Kullanici.KullaniciAdi</span>
+                        </div>
+                        <p>@x.Aciklama</p>
+                    }
+                </div>
+
+                <h2>Yorumlar</h2>
+                @foreach (var y in Model.Deger2)
+                {
+                    <ul class="comment-list">
+                        <li>
+                            <img src="~/web2/images/avatar.png" class="img-responsive" alt="Avatar" />
+                            <div class="desc">
+                                <p>@y.Kullanici.KullaniciAdi: @y.Yorum</p>
+                            </div>
+                            <div class="clearfix"></div>
+                        </li>
+                    </ul>
+                }
+
+                <!-- Yorum Yapma Formu -->
+                <div class="content-form">
+                    <h3>Yorum Yaz...</h3>
+                    <form id="yorumForm" method="post" action="@Url.Action("YorumYap", "Blog")">
+                        <input type="hidden" name="Blogid" value="@ViewBag.BlogId" required />
+                        <textarea placeholder="Yorum" name="Yorum" required></textarea>
+                        <input type="submit" value="GÖNDER" />
+                    </form>
+                    <div id="yorumSonuc"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        $(document).ready(function () {
+            $('#yorumForm').submit(function (e) {
+                e.preventDefault(); // normal submit iptal
+
+                $.ajax({
+                    type: 'POST',
+                    url: $(this).attr('action'),
+                    data: $(this).serialize(),
+                    success: function (response) {
+                        if (response.success) {
+                            $('#yorumForm')[0].reset();
+                            $('#yorumSonuc').html('<p style="color: green;">Yorumunuz başarıyla eklendi.</p>');
+                            location.reload();
+                        } else {
+                            $('#yorumSonuc').html('<p style="color: red;">' + response.message + '</p>');
+                        }
+                    },
+                    error: function () {
+                        $('#yorumSonuc').html('<p style="color: red;">Yorum eklenirken hata oluştu.</p>');
+                    }
+                });
+            });
+        });
+    </script>
+</body>
+</html>

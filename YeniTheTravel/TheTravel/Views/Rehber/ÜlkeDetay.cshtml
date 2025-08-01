@@ -1,0 +1,63 @@
+﻿@{
+    ViewBag.Title = "ÜlkeDetay";
+    Layout = "~/Views/Shared/_TestLayout.cshtml";
+}
+
+@model TheTravel.Models.Sınıflar.Ülke
+
+<div class="rehber-container">
+    <div class="rehber-content">
+        <h2>@Model.Ad - Turistik Mekanlar</h2>
+
+        <div class="mekan-container">
+            @foreach (var mekan in Model.TuristikMekanlar)
+            {
+                <a href="@Url.Action("MekanDetay", "Rehber", new { mekanId = mekan.Id })" class="mekan-button">
+                    @mekan.Ad
+                </a>
+            }
+        </div>
+    </div>
+</div>
+
+<style>
+    .rehber-container {
+        min-height: calc(100vh - 100px); /* Navbar + Footer yüksekliği kadar ayarla */
+        display: flex;
+        flex-direction: column;
+    }
+
+    h2 {
+        font-weight: bold;
+    }
+
+    .rehber-content {
+        flex: 1;
+    }
+
+    .mekan-container {
+        display: block; /* Alt alta sıralama için block olarak ayarladık */
+    }
+
+    .mekan-button {
+        display: block; /* Butonları alt alta sıralamak için block yapıyoruz */
+        background-color: #808080;
+        color: white;
+        padding: 10px 15px;
+        border-radius: 5px;
+        text-decoration: none;
+        font-size: 18px;
+        font-weight: bold;
+        transition: background 0.3s;
+        margin-bottom: 10px; /* Butonlar arasına boşluk ekledik */
+        width: 175px; /* Maksimum genişlik belirledik */
+    }
+
+        .mekan-button:hover {
+            background-color: #ffd800;
+        }
+</style>
+
+
+
+

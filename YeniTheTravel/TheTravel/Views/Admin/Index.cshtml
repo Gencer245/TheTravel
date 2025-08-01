@@ -1,0 +1,30 @@
+﻿@using TheTravel.Models.Sınıflar
+@model List<Blog>
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+}
+
+<h2>Blog Listesi</h2>
+<br />
+<table class="table table-bordered">
+    <tr>
+        <th>ID</th>
+        <th>BAŞLIK</th>
+        <th>SİL</th>
+        <th>GÜNCELLE</th>
+        <th>DETAY</th>
+    </tr>
+    @foreach (var x in Model)
+    {
+    <tr>
+        <th>@x.ID</th>
+        <th>@x.Baslik</th>
+        <th><a href="/Admin/BlogSil/@x.ID" class="btn btn-danger" onclick="return confirm('Bu mekanı silmek istediğinizden emin misiniz?')">Sil</a></th>
+        <th><a href="/Admin/BlogGetir/@x.ID" class="btn btn-warning">Güncelle</a></th>
+        <th><a href="/Admin/BloglarınDetayları/@x.ID" class="btn btn-secondary">Detaylar</a></th>
+    </tr>
+    }
+</table>
+<a href="/Admin/YeniBlog/" class="btn btn-primary">Yeni Blog</a>
+

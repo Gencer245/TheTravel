@@ -1,0 +1,97 @@
+﻿<!DOCTYPE html>
+<html lang="tr">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>@ViewBag.Title - TheTravel</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/css/bootstrap.min.css" rel="stylesheet" />
+    <style>
+        html, body {
+            height: 100%;
+            margin: 0;
+            padding: 0;
+        }
+
+        #page-container {
+            position: relative;
+            min-height: 100vh; /* Sayfanın minimum yüksekliği */
+            padding-top: 70px; /* Navbar yüksekliği */
+        }
+
+        #content-wrap {
+            padding-bottom: 60px; /* Footer yüksekliği kadar boşluk */
+        }
+
+        footer {
+            position: absolute;
+            bottom: 0;
+            width: 100%;
+            height: 60px; /* Footer yüksekliği */
+            background-color: #C2A385; /* Footer rengi */
+            text-align: center;
+            line-height: 60px; /* Dikey ortalama */
+            border-top: 1px solid #dee2e6; /* Üst kenar çizgisi */
+        }
+
+        .navbar {
+            background-color: #C2A385; /* Navbar rengi */
+        }
+
+        .navbar-brand {
+            font-weight: bold;
+            color: black !important; /* Navbar'daki yazı rengi */
+        }
+
+        .nav-item{
+            color: black !important;
+        }
+
+        .nav-link {
+            color: black !important; /* Navbar'daki bağlantı rengi */
+        }
+
+            .nav-link:hover {
+                color: #f8f9fa; /* Hover rengi */
+            }
+    </style>
+</head>
+<body>
+    <nav class="navbar navbar-expand-md navbar-light fixed-top">
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarsProfil" aria-controls="navbarsProfil" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+
+        <div class="collapse navbar-collapse" id="navbarsProfil">
+            <ul class="navbar-nav mr-auto">
+                <li class="nav-item">
+                    <a class="nav-link" href="@Url.Action("Index", "Default")">Siteye Git</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="@Url.Action("Bloglarim", "Profil")">Bloglarım</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="@Url.Action("Yorumlarim", "Profil")">Yorumlarım</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="@Url.Action("Login", "GirisVeKayit")">Çıkış Yap</a>
+                </li>
+            </ul>
+        </div>
+    </nav>
+
+    <div id="page-container">
+        <div id="content-wrap" class="container">
+            @RenderBody()
+        </div>
+
+        <footer>
+            &copy; 2025 TheTravel. Tüm Hakları Saklıdır.
+        </footer>
+    </div>
+
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/js/bootstrap.bundle.min.js"></script>
+
+    @RenderSection("Scripts", required: false)
+</body>
+</html>

@@ -1,0 +1,86 @@
+﻿@using TheTravel.Models.Sınıflar
+@model List<TuristikMekan>
+
+<div class="padding1">
+    <h4>İlgini Çekebilecek Yerler</h4>
+    <div class="photo-container">
+        <!-- Sol Fotoğraflar -->
+        <div class="photo-column">
+            @foreach (var x in Model.Take(3))
+            {
+                <div class="photo-item">
+                    <div class="photo-content">
+                        <img src="@x.ResimUrl" alt="" />
+                        <p><a href="/Rehber/MekanDetay?mekanId=@x.Id">@x.Ad</a></p>
+                    </div>
+                </div>
+            }
+        </div>
+
+        <!-- Sağ Fotoğraflar -->
+        <div class="photo-column">
+            @foreach (var x in Model.Skip(3).Take(3))
+            {
+                <div class="photo-item">
+                    <div class="photo-content">
+                        <img src="@x.ResimUrl" alt="" />
+                        <p><a href="/Rehber/MekanDetay?mekanId=@x.Id">@x.Ad</a></p>
+                    </div>
+                </div>
+            }
+        </div>
+    </div>
+</div>
+
+<style>
+    .photo-content a {
+        color: black !important; /* Başlıkları siyah yapıyoruz */
+        text-decoration: none; /* Alt çizgi eklememek için */
+        font-weight: 500; /* Başlıkları kalınlaştırıyoruz */
+    }
+
+        .photo-content a:hover {
+            color: #ffd800 !important; 
+        }
+
+    /* Fotoğraf konteyneri */
+    .photo-container {
+        display: flex;
+        justify-content: space-between;
+        gap: 20px;
+    }
+
+    /* Fotoğraf sütunları */
+    .photo-column {
+        width: 48%; /* Her sütun için genişlik */
+    }
+
+    /* Fotoğraf öğesi (resim + açıklama) */
+    .photo-item {
+        margin-bottom: 20px;
+    }
+
+    /* Flex düzeni ile fotoğraf ve açıklamayı yan yana yerleştirme */
+    .photo-content {
+        display: flex;
+        align-items: center; /* Dikeyde ortalama */
+        gap: 10px; /* Fotoğraf ile açıklama arasına boşluk ekleyin */
+    }
+
+        .photo-content img {
+            width: 132px; /* Resmin genişliğini ayarladım */
+            height: 92px;
+            object-fit: cover;
+            border-radius: 6px; /* İsteğe bağlı */
+        }
+
+        .photo-content p {
+            flex-grow: 1; /* Açıklamanın boş alanı doldurmasını sağlar */
+            margin: 0;
+            text-align: left; /* Açıklamayı sola hizalayalım */
+        }
+</style>
+
+
+
+

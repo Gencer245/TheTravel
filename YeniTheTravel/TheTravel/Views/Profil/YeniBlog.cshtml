@@ -1,0 +1,46 @@
+﻿@model TheTravel.Models.Sınıflar.Blog
+
+@{
+    ViewBag.Title = "Yeni Blog";
+    Layout = "~/Views/Shared/_ProfilLayout.cshtml";
+}
+
+<h2>@ViewBag.Title</h2>
+
+@if (!ViewData.ModelState.IsValid)
+{
+    <div class="alert alert-danger">
+        @foreach (var error in ViewData.ModelState.Values.SelectMany(v => v.Errors))
+        {
+            <p>@error.ErrorMessage</p>
+        }
+    </div>
+}
+
+@using (Html.BeginForm("YeniBlog", "Profil", FormMethod.Post))
+{
+    @Html.AntiForgeryToken()
+
+    <div class="form-group">
+        @Html.LabelFor(x => x.Baslik)
+        @Html.TextBoxFor(x => x.Baslik, new { @class = "form-control" })
+        @Html.ValidationMessageFor(x => x.Baslik, "", new { @class = "text-danger" })
+
+        @Html.LabelFor(x => x.Tarih)
+        @Html.TextBoxFor(x => x.Tarih, new { @class = "form-control", type = "date" })
+        @Html.ValidationMessageFor(x => x.Tarih, "", new { @class = "text-danger" })
+
+        @Html.LabelFor(x => x.BlogImage)
+        @Html.TextBoxFor(x => x.BlogImage, new { @class = "form-control" })
+        @Html.ValidationMessageFor(x => x.BlogImage, "", new { @class = "text-danger" })
+
+        @Html.LabelFor(x => x.Aciklama)
+        @Html.TextAreaFor(x => x.Aciklama, new { @class = "form-control" })
+        @Html.ValidationMessageFor(x => x.Aciklama, "", new { @class = "text-danger" })
+
+    </div>
+
+    <div class="form-group">
+        <button type="submit" class="btn btn-primary">Kaydet</button>
+    </div>
+}

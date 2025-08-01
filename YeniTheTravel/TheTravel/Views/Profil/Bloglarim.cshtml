@@ -1,0 +1,47 @@
+﻿@model List<Blog>
+@using TheTravel.Models.Sınıflar
+@{
+    ViewBag.Title = "Bloglarım";
+    Layout = "~/Views/Shared/_ProfilLayout.cshtml";
+}
+
+<h2>Bloglarım</h2>
+<br />
+<table class="table table-bordered table-striped">
+    <thead>
+        <tr>
+            <th>BLOG ID</th>
+            <th>BLOG ADI</th>
+            <th>SİL</th>
+            <th>GÜNCELLE</th>
+            <th>DETAY</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var x in Model)
+        {
+            <tr>
+                <td>@x.ID</td>
+                <td>@x.Baslik</td>
+                <td>
+                    <a href="/Profil/BlogSil/@x.ID" class="btn btn-danger"
+                       onclick="return confirm('Bu blogu silmek istediğinizden emin misiniz?')">
+                        Sil
+                    </a>
+                </td>
+                <td>
+                    <a href="/Profil/BlogGetir/@x.ID" class="btn btn-warning">
+                        Güncelle
+                    </a>
+                </td>
+                <td>
+                    <a href="@Url.Action("BloglarınDetayları", "Profil", new { id = x.ID })" class="btn btn-secondary">
+                        Detaylar
+                    </a>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
+
+<a href="/Profil/YeniBlog" class="btn btn-primary">Yeni Blog Ekle</a>

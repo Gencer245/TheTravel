@@ -1,0 +1,28 @@
+﻿@model TheTravel.Models.Sınıflar.TuristikMekan
+@{
+    ViewBag.Title = "MekanGetir";
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+}
+
+<h2>Turistik Yer Güncelleme Sayfası</h2>
+<br />
+
+@using (Html.BeginForm("MekanGuncelle", "Admin", FormMethod.Post))
+{
+    @Html.LabelFor(x => x.Id)
+    @Html.TextBoxFor(x => x.Id, new { @class = "form-control", @readonly = "readonly" })
+    <br />
+    @Html.HiddenFor(x => x.ÜlkeId)
+    @Html.LabelFor(x => x.Ad)
+    @Html.TextBoxFor(x => x.Ad, new { @class = "form-control" })
+    <br />
+    @Html.LabelFor(x => x.ResimUrl)
+    @Html.TextBoxFor(x => x.ResimUrl, new { @class = "form-control" })
+    <br />
+    @Html.LabelFor(x => x.Açıklama)
+    @Html.TextAreaFor(x => x.Açıklama, 15, 1, new { @class = "form-control" })
+    <br />
+    <button class="btn btn-success">Kaydet</button>
+}
+
+

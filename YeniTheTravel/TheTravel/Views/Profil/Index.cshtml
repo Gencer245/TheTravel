@@ -1,0 +1,50 @@
+﻿@model TheTravel.Models.Sınıflar.Kullanici
+
+@{
+    ViewBag.Title = "Benim Profilim";
+    Layout = "~/Views/Shared/_ProfilLayout.cshtml";
+}
+
+<style>
+    .profile-welcome {
+        font-size: 2.5rem;
+        font-weight: 700;
+        color: #001f3f;
+        text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.2);
+        border-bottom: 3px solid #C2A385;
+        display: inline-block;
+        padding-bottom: 5px;
+        margin-bottom: 20px;
+    }
+
+    .user-info {
+        margin-bottom: 30px;
+    }
+
+    .list-group-item {
+        background-color: #f8f9fa;
+        border: 1px solid #dee2e6;
+    }
+
+        .list-group-item strong {
+            color: #343a40; /* Koyu gri renk */
+        }
+
+    .btn-primary {
+        background-color: #007bff;
+        border-color: #007bff;
+    }
+</style>
+
+<h2 class="profile-welcome">Hoşgeldin, @Model.KullaniciAdi!</h2>
+
+<!-- Kullanıcı Bilgileri -->
+<div class="user-info">
+    <h3>Kullanıcı Bilgileri</h3>
+    <ul class="list-group">
+        <li class="list-group-item"><strong>Kullanıcı Adı:</strong> @Model.KullaniciAdi</li>
+        <li class="list-group-item"><strong>E-posta:</strong> @Model.Mail</li>
+    </ul>
+</div>
+
+<p>Profil sayfanızdan bloglarınızı ve yorumlarınızı yönetebilirsiniz.</p>

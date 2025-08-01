@@ -1,0 +1,54 @@
+﻿@{
+    ViewBag.Title = "MekanDetay";
+    Layout = "~/Views/Shared/_TestLayout.cshtml";
+}
+@model TheTravel.Models.Sınıflar.TuristikMekan
+
+<div class="wrapper">
+    <h2>@Model.Ad</h2>
+    <img src="@Model.ResimUrl" alt="@Model.Ad" style="max-width:400px; display:block; margin:10px 0 25px; border-radius:10px; box-shadow:0 4px 8px rgba(0, 0, 0, 0.2);">
+    <p>@Model.Açıklama</p>
+</div>
+
+<style>
+    html, body {
+        height: 100%;
+        margin: 0;
+    }
+
+    .wrapper {
+        min-height: calc(100vh - 50px); /* Footer yüksekliğini hesaba kat */
+        padding-bottom: 50px; /* Footer yüksekliği kadar boşluk bırak */
+    }
+
+    h2 {
+        color: #333;
+        font-weight: bold;
+    }
+
+    p {
+        font-size: 18px;
+        color: #555;
+    }
+
+    img {
+        max-width: 400px;
+        display: block;
+        margin: 10px 0 30px;
+        border-radius: 10px;
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    }
+
+    footer {
+        background-color: #f1f1f1; /* Footer arka plan rengi */
+        text-align: center; /* İçerik ortalama */
+        padding: 10px; /* İçerik için boşluk */
+        position: relative; /* Footer'ı konumlandır */
+        bottom: 0; /* Sayfanın en altına yerleştir */
+        width: 100%; /* Tam genişlik */
+    }
+</style>
+
+
+
+

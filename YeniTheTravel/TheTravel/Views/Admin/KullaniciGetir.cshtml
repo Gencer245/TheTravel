@@ -1,0 +1,61 @@
+﻿
+@model TheTravel.Models.Sınıflar.Kullanici
+
+@{
+    ViewBag.Title = "Kullanıcı Detayı";
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+}
+
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+    <meta charset="UTF-8" />
+    <title>@ViewBag.Title</title>
+    <link href="~/Content/bootstrap.min.css" rel="stylesheet" />
+</head>
+<body>
+    <div class="container mt-4">
+        <h2>Kullanıcı Detayı</h2>
+        <h4>@Model.KullaniciAdi</h4>
+        <p>Mail: @Model.Mail</p>
+
+        <h4>Bloglar</h4>
+        @if (Model.Bloglar != null && Model.Bloglar.Any())
+        {
+            <ul>
+                @foreach (var blog in Model.Bloglar)
+                {
+                    <li>
+                        <strong>@blog.Baslik</strong> - @blog.Tarih.ToString("dd/MM/yyyy")<br />
+                        <p>@blog.Aciklama</p>
+                    </li>
+                }
+            </ul>
+        }
+        else
+        {
+            <p>Bu kullanıcının blogu yok.</p>
+        }
+
+        <h4>Yorumlar</h4>
+        @if (Model.Yorumlars != null && Model.Yorumlars.Any())
+        {
+            <ul>
+                @foreach (var yorum in Model.Yorumlars)
+                {
+                    <li>
+                        <strong>Blog:</strong> @yorum.Blog.Baslik<br />
+                        <strong>Yorum:</strong> @yorum.Yorum
+                    </li>
+                }
+            </ul>
+        }
+        else
+        {
+            <p>Bu kullanıcının yorumu yok.</p>
+        }
+
+        <a href="@Url.Action("KullaniciListesi", "Admin")" class="btn btn-primary">Geri</a>
+    </div>
+</body>
+</html>

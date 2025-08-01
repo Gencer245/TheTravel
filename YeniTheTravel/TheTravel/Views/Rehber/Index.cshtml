@@ -1,0 +1,90 @@
+﻿
+@{ Layout = "~/Views/Shared/_TestLayout.cshtml"; }
+
+@model IEnumerable<TheTravel.Models.Sınıflar.Kıta>
+
+<div class="rehber-container">
+    <div class="kıta-listesi">
+        <h2 style="color: black; font-weight: bold; font-size: 32px;">Kıtalar</h2>
+        <ul>
+            @foreach (var kıta in Model)
+            {
+                <li>
+                    <a href="@Url.Action("KıtaDetay", "Rehber", new { kıtaId = kıta.Id })" class="kıta-btn">
+                        @kıta.Ad
+                    </a>
+                </li>
+            }
+        </ul>
+    </div>
+
+    <div class="dünya-resim-container">
+        <img src="~/web/images/dunya_harita.jpg" alt="Dünya Haritası" class="dünya-resmi">
+    </div>
+</div>
+
+<style>
+    .rehber-container {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        max-width: 900px;
+        margin: 40px auto;
+    }
+
+    .kıta-listesi {
+        flex: 1;
+        text-align: left;
+    }
+
+        .kıta-listesi h2 {
+            font-size: 24px;
+            color: #004000;
+            margin-bottom: 15px;
+        }
+
+        .kıta-listesi ul {
+            list-style: none;
+            padding: 0;
+        }
+
+        .kıta-listesi li {
+            margin-bottom: 10px;
+        }
+
+    .kıta-btn {
+        display: block;
+        width: 200px;
+        padding: 12px;
+        text-align: center;
+        font-size: 18px;
+        font-weight: bold;
+        color: white;
+        background-color: #808080;
+        border-radius: 8px;
+        text-decoration: none;
+        transition: 0.3s ease-in-out;
+    }
+
+        .kıta-btn:hover {
+            background-color: #ffd800;
+        }
+
+    .dünya-resim-container {
+        flex: 1;
+        display: flex;
+        justify-content: center;
+    }
+
+    .dünya-resmi {
+        max-width: 535px;
+        height: auto;
+    }
+</style>
+
+
+
+
+
+
+

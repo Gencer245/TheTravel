@@ -1,0 +1,36 @@
+﻿@using TheTravel.Models.Sınıflar
+@model List<Ülke>
+
+@{
+    ViewBag.Title = "ÜlkelerList";
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+}
+
+<h2>@ViewBag.KitaAdi Kıtası Ülkeler</h2>
+<br />
+<table class="table table-bordered">
+    <tr>
+        <th>ID</th>
+        <th>BAŞLIK</th>
+        <th>SİL</th>
+        <th>DETAY</th>
+    </tr>
+    @foreach (var ulke in Model)
+    {
+        <tr>
+            <th>@ulke.Id</th>
+            <th>@ulke.Ad</th>
+            <th>
+                <a href="/Admin/ÜlkeSil/@ulke.Id" class="btn btn-danger" onclick="return confirm('Bu mekanı silmek istediğinizden emin misiniz?')">Sil</a>
+            </th>
+            <th>
+                <a href="/Admin/MekanList/@ulke.Id" class="btn btn-secondary">Detay</a>
+            </th>
+        </tr>
+    }
+</table>
+
+<a href="/Admin/YeniÜlke/" class="btn btn-primary">Yeni Ülke Ekle</a>
+
+
+

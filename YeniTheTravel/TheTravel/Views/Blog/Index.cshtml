@@ -1,0 +1,72 @@
+﻿@model TheTravel.Models.Sınıflar.BlogYorum
+@using PagedList.Mvc; <!-- Sayfalama için eklendi -->
+
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_TestLayout.cshtml";
+}
+
+<!DOCTYPE HTML>
+<html>
+<head>
+    <link href="~/web2/css/bootstrap.css" rel='stylesheet' type='text/css' />
+    <link href="~/web2/css/style.css" rel='stylesheet' type='text/css' />
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <meta name="keywords" content="Personal Blog Responsive web template, Bootstrap Web Templates, Flat Web Templates, Andriod Compatible web template,
+	Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, SonyErricsson, Motorola web design" />
+    <script type="application/x-javascript"> addEventListener("load", function() { setTimeout(hideURLbar, 0); }, false); function hideURLbar(){ window.scrollTo(0,1); } </script>
+    <!----webfonts---->
+    <link href='http://fonts.googleapis.com/css?family=Oswald:100,400,300,700' rel='stylesheet' type='text/css'>
+    <link href='http://fonts.googleapis.com/css?family=Lato:100,300,400,700,900,300italic' rel='stylesheet' type='text/css'>
+
+</head>
+<body>
+    <!---header---->
+    <div class="header">
+        <div class="container">
+            <!---start-top-nav---->
+            <div class="clearfix"></div>
+            <!---//End-top-nav---->
+        </div>
+    </div>
+    <!--/header-->
+    <div class="single">
+        <div class="container">
+            <div class="col-md-8 single-main">
+
+                @foreach (var x in Model.Deger1)
+                {
+                    <div class="single-grid">
+                        <img src="@x.BlogImage" alt="" style="margin-bottom: 20px" />
+                        <a href="/Blog/BlogDetay/@x.ID">@x.Baslik</a>
+                        <p>@(x.Aciklama != null && x.Aciklama.Length > 200 ? x.Aciklama.Substring(0, 200) + "..." : x.Aciklama)</p>
+
+                        <p>
+                            <a href="/Blog/BlogDetay/@x.ID" style="text-decoration: none !important;">
+                                <span class="read">Devamını Oku>></span>
+                            </a>
+                        </p>
+                    </div>
+                }
+
+                <div class="pagination">
+                    @Html.PagedListPager(Model.Deger1, sayfa => Url.Action("Index", new { sayfa }))
+                </div>
+            </div>
+
+            <div class="col-md-4 side-content">
+                <div class="recent">
+                    <h3>Son Bloglar</h3>
+                    @foreach (var z in Model.Deger3)
+                    {
+                        <ul>
+                            <li><a href="/Blog/BlogDetay/@z.ID">@z.Baslik</a></li>
+                        </ul>
+                    }
+                </div>
+            </div>
+        </div> <!-- .container -->
+    </div> <!-- .single -->
+</body>
+</html>

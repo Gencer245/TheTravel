@@ -1,0 +1,18 @@
+﻿@model TheTravel.Models.Sınıflar.TuristikMekan
+@{
+    ViewBag.Title = "MekanlarıGöster";
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+}
+
+<h2>@Model.Ad</h2>
+<br />
+
+<div>
+    <p><strong>Mekan ID:</strong> @Model.Id</p>
+    <p><strong>Mekan FOTO URL:</strong> @Model.ResimUrl</p>
+    <p><strong>Açıklama:</strong> @Model.Açıklama</p>
+</div>
+
+<hr />
+
+

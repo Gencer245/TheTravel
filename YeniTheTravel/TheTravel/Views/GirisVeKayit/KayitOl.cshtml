@@ -1,0 +1,128 @@
+﻿@model TheTravel.Models.Sınıflar.Kullanici
+
+@{
+    Layout = null;
+}
+
+<head>
+    <title>Kayıt Ol - TheTravel</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <link href="~/webLogin/css/style.css" rel="stylesheet" type="text/css" media="all" />
+    <style>
+        body {
+            color: black !important; /* Tüm metinleri siyah yap */
+            background-color: #f4f4f4; /* Sayfa arka plan rengi */
+            font-family: Arial, sans-serif; /* Yazı tipi */
+        }
+
+        .header h1 {
+            text-align: center;
+            color: white;
+            font-size: 24px;
+            background-color: #C2A385;
+            padding: 15px 30px;
+            border-radius: 8px;
+            margin-bottom: 30px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            transition: all 0.3s ease;
+        }
+
+            .header h1:hover {
+                background-color: #C2A385;
+                color: white;
+                cursor: pointer;
+                transform: translateY(-5px);
+            }
+
+        .form-container {
+            max-width: 400px;
+            margin: 80px auto;
+            padding: 30px 40px;
+            border-radius: 10px;
+            background-color: transparent; /* Arka planı kaldırdık */
+            margin-top: -10px;
+        }
+
+        label {
+            display: block;
+            margin-bottom: 5px;
+            font-weight: bold;
+            color: #555;
+        }
+
+        input[type="text"],
+        input[type="password"],
+        input[type="email"] {
+            width: 100%;
+            padding: 10px;
+            margin-bottom: 15px;
+            border: none;
+            border-bottom: 2px solid #fff; /* Varsayılan alt çizgi beyaz olacak */
+            border-radius: 0;
+            background: transparent;
+            color: black;
+        }
+
+        /* Focus durumunda da beyaz alt çizgi olacak */
+        input:focus {
+            border-bottom: 2px solid #fff; /* Focus durumunda beyaz alt çizgi */
+            outline: none; /* Dış hatayı kaldır */
+        }
+
+        .btn-submit {
+            background-color: #003366;
+            color: white;
+            padding: 12px;
+            border: none;
+            width: 100%;
+            border-radius: 5px;
+            font-size: 16px;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+
+            .btn-submit:hover {
+                background-color: #357ABD;
+            }
+
+        .error-message {
+            color: red;
+            font-weight: bold;
+            margin-bottom: 15px;
+            text-align: center;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="padding-all">
+        <!-- Header for Register Title -->
+        <div class="header">
+            <h1>YENİ KULLANICI KAYDI</h1>
+        </div>
+
+        <div class="form-container">
+            @if (ViewBag.Hata != null)
+            {
+                <div class="error-message">
+                    @ViewBag.Hata
+                </div>
+            }
+
+            @using (Html.BeginForm("KayitOl", "GirisVeKayit", FormMethod.Post))
+            {
+                @Html.TextBoxFor(x => x.KullaniciAdi, new { placeholder = "Kullanıcı Adı" })
+                @Html.ValidationMessageFor(x => x.KullaniciAdi)
+
+                @Html.TextBoxFor(x => x.Mail, new { type = "email", placeholder = "E-posta" })
+                @Html.ValidationMessageFor(x => x.Mail)
+
+                @Html.PasswordFor(x => x.Sifre, new { placeholder = "Şifre" })
+                @Html.ValidationMessageFor(x => x.Sifre)
+
+                <button type="submit" class="btn-submit">Kayıt Ol</button>
+            }
+        </div>
+    </div>
+</body>

@@ -1,0 +1,10 @@
+﻿<div class="content-form">
+    <h3>Yorum Yaz...</h3>
+    <form method="post" action="@Url.Action("YorumYap", "Blog")">
+        <input type="hidden" name="Blogid" value="@ViewBag.deger" required />
+        <textarea placeholder="Yorum" name="Yorum" required></textarea>
+        <input type="submit" value="GÖNDER" />
+    </form>
+</div>
+
+
